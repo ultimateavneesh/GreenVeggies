@@ -1,0 +1,109 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background-image: url('/static/veg/img/Abstract.svg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #03fcc2;
+        }
+        
+        .card {
+            background-image: url("static/veg/img/Subtle.svg");
+        }
+
+    </style>
+
+    <title>Shop</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'shop' %}">
+            <img src="{% static 'veg/img/logo.svg' %}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+        </a>
+        <a class="navbar-brand" href="{% url 'shop' %}">Green Veggies</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'about' %}">About Us <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+
+            <form class="form-inline my-2 my-lg-0" action="/handlelogout" method="POST">
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Log out</button>
+                {% csrf_token %}
+            </form>
+        </div>
+    </nav>
+
+
+
+
+    <div class="text-center">
+        <h1 class="display-1">Vendors</h1>
+    </div>
+
+
+    <form action="/ven_to_cata/" method="POST">
+        <div class="row mx-auto">
+            {% for i in ven_nm %}
+            <div class="card mx-auto my-4 border-success" style="width: 18rem; background-image: url('/static/veg/img/Subtle.svg');">
+                <div class="card-header">
+                    <h1 class="display-4" type="hidden">{{i.vendor_firstname}}</h1>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h4>
+                        Contact :
+                        <small class="text-muted">{{i.vendor_contact}}</small>
+                        </h4>
+                        <h4>
+                            Address :
+                            <small class="text-muted">{{i.vendor_address}}</small>
+                        </h4>
+                    </li>
+                </ul>
+                <div class="card-footer">
+                    <button class="btn btn-success" id="ven_name" name="ven_name" value="{{i.vendor_username}}" type="submit">See Veggies</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% csrf_token %}
+    </form>
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

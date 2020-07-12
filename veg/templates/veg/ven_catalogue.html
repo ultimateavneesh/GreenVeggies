@@ -1,0 +1,725 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Shop</title>
+
+    <style>
+        body {
+            background-image: url('/static/veg/img/Subtle.svg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #03fcc2;
+        }
+        
+        .container {
+            padding: 100px;
+        }
+        
+        #save {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 10rem;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'veg/img/logo.svg' %}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+        </a>
+        <a class="navbar-brand" href="#">Green Veggies</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'about' %}">About Us <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+
+            <form class="form-inline my-2 my-lg-0" action="/handlelogout" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Log out</button>
+            </form>
+        </div>
+    </nav>
+
+
+    <form action='/update_catalogue' method='POST'>
+        {% for i in ven_nm %}
+        <div class="my-5 mx-auto">
+            <div class="text-center">
+
+                <h1 class="display-2">Welcome {{i.vendor_firstname}}</h1>
+
+            </div>
+        </div>
+
+        <div class="mx-3">
+            <h2>
+                Contact : <input type="text" class="form-control" id="vendor_contact" style="width: 10em; font-size: large;" value="{{ ven.vendor_contact }}" name="vendor_contact" placeholder="">  
+            </h2>
+        
+            <h2>
+                Address : <input type="text" class="form-control" id="vendor_address" style="width: 10em; font-size: large;" value="{{ ven.vendor_address }}" name="vendor_address" placeholder="">  
+            </h2>
+        </div>
+
+        {% endfor %}
+
+
+
+
+
+
+
+
+        <div class="row mx-auto">
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/apple.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Apple</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="apple" value="{{ ven.apple }}" name="apple" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/banana.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Banana</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="banana" value="{{ ven.banana }}" name="banana" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/broccoli.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Broccoli</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="broccoli" value="{{ ven.broccoli }}" name="broccoli" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/cabbage.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Cabbage</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="cabbage" value="{{ ven.cabbage }}" name="cabbage" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/capsicum.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Capsicum</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="capsicum" value="{{ ven.capsicum }}" name="capsicum" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/carrot.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Carrot</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="carrot" value="{{ ven.carrot }}" name="carrot" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/cauliflower.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Cauliflower</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="cauliflower" value="{{ ven.cauliflower }}" name="cauliflower" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/chilly.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Chilly</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="chilly" value="{{ ven.chilly }}" name="chilly" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/coriander.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Coriander</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="coriander" value="{{ ven.coriander}}" name="coriander" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/cucumber.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Cucumber</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="cucumber" value="{{ ven.cucumber }}" name="cucumber" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/garlic.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Garlic</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="garlic" value="{{ ven.garlic }}" name="garlic" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/ginger.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Ginger</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="ginger" value="{{ ven.ginger }}" name="ginger" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/grapes.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Grapes</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="grapes" value="{{ ven.grapes }}" name="grapes" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/guava.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Guava</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="guava" value="{{ ven.guava }}" name="guava" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/jackfruit.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Jackfruit</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="jackfruit" value="{{ ven.jackfruit }}" name="jackfruit" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/lemon.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Lemon</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="lemon" value="{{ ven.lemon}}" name="lemon" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/lychees.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Lychee</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="lychee" value="{{ ven.lychee }}" name="lychee" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/mango.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Mango</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="mango" value="{{ ven.mango}}" name="mango" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/mushroom.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Mushroom</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="mushroom" value="{{ ven.mushroom }}" name="mushroom" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/onion.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Onion</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="onion" value="{{ ven.onion }}" name="onion" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/orange.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Orange</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="orange" value="{{ ven.orange }}" name="orange" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/papaya.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Papaya</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="papaya" value="{{ ven.papaya}}" name="papaya" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/pear.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Pear</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="pear" value="{{ ven.pear }}" name="pear" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/peas.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Pea</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="pea" value="{{ ven.pea }}" name="pea" value="{{ ven.pea }}" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/pineapple.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Pineapple</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="pineapple" value="{{ ven.pineapple }}" name="pineapple" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/pomegranate.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Pomegranate</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="pomegranate" value="{{ ven.pomegranate }}" name="pomegranate" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/potato.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Potato</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="potato" value="{{ ven.potato }}" name="potato" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/pumpkin.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Pumpkin</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="pumpkin" value="{{ ven.pumpkin }}" name="pumpkin" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/scallian.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Scallion</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="scallion" value="{{ ven.scallion }}" name="scallion" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/spinach.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Spinach</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="spinach" value="{{ ven.spinach }}" name="spinach" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/tomato.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Tomato</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="tomato" value="{{ ven.tomato}}" name="tomato" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/turnip.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Turnip</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="turnip" value="{{ ven.turnip }}" name="turnip" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card mx-auto my-4 border-success" style="width: 18rem;">
+                <img src="{% static 'veg/img/watermelon.webp' %}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <li class="list-group-item">
+                            <h5 class="card-title">Watermelon</h5>
+                        </li>
+                    </div>
+                </ul>
+                <div class="form-row align-items-center mx-3 my-1">
+                    <div class="col-sm-6">Update Price :</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="watermelon" value="{{ ven.watermelon }}" name="watermelon" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <button class="btn btn-success" id="save" type="submit">
+                    <h1 class="display-4">Save</h1>
+                </button>
+            </div>
+
+            {% csrf_token %}
+
+        </div>
+    </form>
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>
